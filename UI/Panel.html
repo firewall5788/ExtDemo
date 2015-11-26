@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../lib/extjs/resources/css/ext-all-neptune.css" />
+    <script type="text/javascript" src="../lib/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="../lib/extjs/extend.js"></script>
+    <script type="text/javascript" src="../lib/extjs/locale/ext-lang-zh_CN.js"></script>
+    <!--<script type="text/javascript" src="lib/js/function.js"></script>-->
+
+    <script type="text/javascript" src="js/Panel.js"></script>
+    <script type="text/javascript" src="js/Form.js"></script>
+    <script type="text/javascript" src="js/Grid.js"></script>
+    <script type="text/javascript" src="js/Model.js"></script>
+    <script>
+        Ext.onReady(function() {
+
+            var panel = Ext.create('Code.Panel', {
+                title: 'Code.Panel',
+                region: 'north',
+                width: 300,
+                height: 400
+            });
+
+            var form = Ext.create('Code.Form', {
+                title: 'Code.Form',
+                region: 'center',
+                width: 500,
+                height: 400
+            });
+
+            var grid = Ext.create('Code.Grid', {
+                title: 'Code.Grid',
+                region: 'south',
+                width: 600,
+                height: 500
+            });
+
+            Ext.create('Ext.Viewport', {
+                layout: 'border',
+                items: [ panel, form, grid ]
+            });
+        });
+    </script>
+</head>
+<body>
+HTML5
+</body>
+</html>

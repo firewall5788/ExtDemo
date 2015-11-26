@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../lib/extjs/resources/css/ext-all-neptune.css" />
+    <script type="text/javascript" src="../lib/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="../lib/extjs/extend.js"></script>
+    <script type="text/javascript" src="../lib/extjs/locale/ext-lang-zh_CN.js"></script>
+    <title>My Chart Demo</title>
+    <script type="text/javascript" src="../example-data.js"></script>
+
+    <script>
+    <!-- 每个图表有三个关键部分 - 一个Store包含数据, 一个 Axes数组定义图表边界, 和一个或更多的 Series 处理可视化呈现的数据点. -->
+
+
+    Ext.onReady(function() {
+        Ext.define('WeatherPoint', {
+            extend: 'Ext.data.Model',
+            fields: [ 'temperature', 'date' ]
+        });
+        var store = Ext.create('Ext.data.Store', {
+            model: 'WeatherPoint',
+            data: [
+                /*{ temperature: 58, date: new Date(2015, 1, 1, 8) },
+                { temperature: 63, date: new Date(2015, 1, 1, 9) },
+                { temperature: 73, date: new Date(2015, 1, 1, 10) },
+                { temperature: 78, date: new Date(2015, 1, 1, 11) },
+                { temperature: 81, date: new Date(2015, 1, 1, 12) }*/
+                { temperature: 58, date: 1 },
+                { temperature: 63, date: 2 },
+                { temperature: 73, date: 3 },
+                { temperature: 78, date: 4 },
+                { temperature: 81, date: 5 },
+                { temperature: 43, date: 6 }
+            ]
+        });
+
+        Ext.create('Ext.chart.Chart', {
+            renderTo: Ext.getBody(),
+            width: 800,
+            height: 600,
+            store: store,
+            axes: [
+                {
+                    title: 'Temperature',
+                    type: 'Numeric',
+                    position: 'left',
+                    fields: ['temperature'],
+                    minimum: 0,
+                    maximum: 100
+                },
+                {
+                    title: 'Time',
+                    type: 'Numeric',
+                    position: 'bottom',
+                    fields: ['date']
+                    //groupBy: 'hour',
+                    //dateFormat: 'ga'
+                }
+            ],
+            series: [
+                {
+                    type: 'line',
+                    xField: 'date',
+                    yField: 'temperature'
+                }
+            ],
+            theme: 'Green'
+        });
+
+        /*var panel = Ext.create('Ext.panel.Panel', {
+            width: 500,
+            height: 300,
+            title: 'Panel',
+            region: 'center'
+        });
+        Ext.create('Ext.Viewport', {
+            layout: 'border',
+            items: [panel]
+        });*/
+    });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

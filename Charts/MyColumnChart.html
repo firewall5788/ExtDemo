@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../lib/extjs/resources/css/ext-all-neptune.css" />
+    <script type="text/javascript" src="../lib/extjs/ext-all.js"></script>
+    <script type="text/javascript" src="../lib/extjs/extend.js"></script>
+    <script type="text/javascript" src="../lib/extjs/locale/ext-lang-zh_CN.js"></script>
+    <title>My Column Chart</title>
+    <script type="text/javascript" src="../example-data.js"></script>
+    <script>
+        Ext.onReady(function() {
+            var chart = Ext.create('Ext.chart.Chart', {
+                width: 800,
+                height: 600,
+                border: true,
+                //layout: 'fit',
+                renderTo: Ext.getBody(),
+                animate: true,
+                shadow: true,
+                store: store1,
+                axes: [{
+                    type: 'Numeric',
+                    position: 'left',
+                    fields: ['data1'],
+                    label: {
+                        renderer: Ext.util.Format.numberRenderer('0,0')
+                    },
+                    title: 'Number of Hits',
+                    grid: true,
+                    minimum: 0
+                }, {
+                    type: 'Category',
+                    position: 'bottom',
+                    fields: ['name'],
+                    title: 'Month of the Year'
+                }],
+                series: [{
+                    type: 'column',
+                    axis: 'left',
+                    hightlight: true,
+                    tips: {
+                        trackMouse: true,
+                        width: 140,
+                        height: 28,
+                        renderer: function(storeItem, item) {
+                            this.setTitle(storeItem.get('name') + ':' + storeItem.get('data1') + '$');
+                        }
+                    },
+                    label: {
+                        display: 'insideEnd',
+                        'text-anchor': 'middle',
+                        field: 'data1',
+                        renderer: Ext.util.Format.numberRenderer('0'),
+                        orientation: 'vertical',
+                        color: '#333'
+                    },
+                    xField: 'name',
+                    yField: 'data1'
+                }]
+
+            });
+            /*var win = Ext.create('Ext.window.Window', {
+                width: 800,
+                height: 600,
+                title: 'Column Chart',
+                autoShow: true,
+                layout: 'fit',
+                items: chart
+            });*/
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
